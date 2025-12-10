@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>小小勇者大闯关 🎮</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+    <!-- 星空粒子背景 -->
+    <canvas id="starsCanvas"></canvas>
+
+    <!-- 顶部进度条 -->
+    <div id="progressBar" class="progress-container hidden">
+        <div class="progress-stars">
+            <span class="star" data-level="1">⭐</span>
+            <span class="star" data-level="2">⭐</span>
+            <span class="star" data-level="3">⭐</span>
+            <span class="star" data-level="4">⭐</span>
+            <span class="star" data-level="5">⭐</span>
+            <span class="star" data-level="6">⭐</span>
+            <span class="star" data-level="7">⭐</span>
+            <span class="star" data-level="8">⭐</span>
+        </div>
+    </div>
+
+    <!-- 设置按钮 -->
+    <div class="settings-container">
+        <button id="soundToggle" class="sound-btn" title="音效开关">🔊</button>
+        <button id="homeBtn" class="home-btn hidden" title="返回首页">🏠</button>
+    </div>
+
+    <!-- 首页 -->
+    <div id="homeScreen" class="screen active">
+        <div class="home-content">
+            <h1 class="main-title" id="titleLongPress">小小勇者大闯关</h1>
+            <div class="hero-selector">
+                <div class="hero-option" data-hero="boy">
+                    <div class="hero-avatar boy">👦</div>
+                    <span>小勇士</span>
+                </div>
+                <div class="hero-option active" data-hero="girl">
+                    <div class="hero-avatar girl">👧</div>
+                    <span>小勇者</span>
+                </div>
+            </div>
+            <button id="startBtn" class="rainbow-btn">开始冒险！</button>
+        </div>
+    </div>
+
+    <!-- 关卡选择/游戏界面 -->
+    <div id="gameScreen" class="screen hidden">
+        <div id="gameContainer" class="game-container">
+            <!-- 游戏内容动态加载 -->
+        </div>
+    </div>
+
+    <!-- 胜利动画 -->
+    <div id="victoryAnimation" class="victory-screen hidden">
+        <div class="fireworks-container" id="fireworks"></div>
+        <div class="victory-text">太棒啦！🎉</div>
+        <div class="confetti-container" id="confetti"></div>
+    </div>
+
+    <!-- 失败提示 -->
+    <div id="failMessage" class="fail-message hidden">
+        <div class="fail-content">再试一次哦～ 💪</div>
+        <button class="retry-btn" onclick="retryCurrentLevel()">再来一次</button>
+    </div>
+
+    <!-- 胜利殿堂（证书页面） -->
+    <div id="certificateScreen" class="screen hidden">
+        <div class="certificate-container">
+            <h2 class="certificate-title">🏆 胜利殿堂 🏆</h2>
+            <canvas id="certificateCanvas" width="800" height="600"></canvas>
+            <div class="certificate-actions">
+                <button id="saveCertBtn" class="cert-btn">保存证书 📸</button>
+                <button id="shareCertBtn" class="cert-btn">分享给爸爸妈妈 📤</button>
+            </div>
+            <button id="restartBtn" class="restart-btn">重新开始 🎮</button>
+        </div>
+    </div>
+
+    <!-- 家长模式 -->
+    <div id="parentMode" class="screen hidden">
+        <div class="parent-container">
+            <h2>👨‍👩‍👧 家长模式</h2>
+            <div class="parent-stats">
+                <p>已通关关卡：<span id="parentStats">0</span> / 8</p>
+                <p>开始时间：<span id="startTime">-</span></p>
+                <p>完成时间：<span id="endTime">-</span></p>
+            </div>
+            <button class="parent-close-btn" onclick="exitParentMode()">返回游戏</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
